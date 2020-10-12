@@ -11,11 +11,14 @@ class MyProfile extends Component {
     this.setState({[inputid]:e.target.value});
   }
 
- 
+  handleFormSubmit=(event)=>{
+    event.preventDefault();
+    console.log(JSON.stringify(this.state));
+  }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleFormSubmit}>
         <h1>My Profile</h1>
         <div class="form-group">
           <label htmlFor="name">Name:</label>
@@ -29,7 +32,7 @@ class MyProfile extends Component {
           <label htmlFor="description">Description</label>
           <input className="form-control" id="description" value={this.state.description} onChange={(e) =>this.change(e,"description")}></input>
         </div>
-        <button type="button" disabled={(this.state.name===''||this.state.gender===''||this.state.description==='')} className="btn btn-primary">Submit</button>
+        <button type="submit"   disabled={(this.state.name===''||this.state.gender===''||this.state.description==='')} className="btn btn-primary">Submit</button>
       </form>
     );
   }
